@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up or Login</title>
+    <!-- You can link your CSS file here -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function checkPasswordStrength() {
+            var password = document.getElementById("new_password").value;
+            var strengthMeter = document.getElementById("password-strength-meter");
+            var strengthText = document.getElementById("password-strength-text");
+
+            // Check password strength
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
+            var mediumRegex = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{6,})");
+
+            if (strongRegex.test(password)) {
+                strengthMeter.value = 100;
+                strengthText.innerHTML = "Strong";
+                strengthText.style.color = "green";
+            } else if (mediumRegex.test(password)) {
+                strengthMeter.value = 50;
+                strengthText.innerHTML = "Medium";
+                strengthText.style.color = "orange";
+            } else {
+                strengthMeter.value = 20;
+                strengthText.innerHTML = "Weak";
+                strengthText.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Sign Up or Login</h1>
+    <form action="/login" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <br>
+    <form action="/signup" method="post">
+        <label for="new_username">New Username:</label><br>
+        <input type="text" id="new_username" name="username"><br>
+        <label for="new_password">New Password:</label><br>
+        <input type="password" id="new_password" name="password"><br><br>
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>
